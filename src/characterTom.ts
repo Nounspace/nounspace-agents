@@ -14,7 +14,8 @@ export const characterTom: Character = {
   plugins: [
     // Core plugins first
     '@elizaos/plugin-sql',
-
+    // "@elizaos/plugin-farcaster",
+    
     // Text-only plugins (no embedding support)
     ...(process.env.ANTHROPIC_API_KEY?.trim() ? ['@elizaos/plugin-anthropic'] : []),
     ...(process.env.OPENROUTER_API_KEY?.trim() ? ['@elizaos/plugin-openrouter'] : []),
@@ -40,7 +41,12 @@ export const characterTom: Character = {
     ...(!process.env.IGNORE_BOOTSTRAP ? ['@elizaos/plugin-bootstrap'] : []),
   ],
   settings: {
-    secrets: {},
+    FARCASTER_FID: 527313,
+    secrets: {
+      OPENAI_API_KEY: process.env.TOM_OPENAI_API_KEY,
+      FARCASTER_SIGNER_UUID: process.env.TOM_FARCASTER_SIGNER_UUID,
+      FARCASTER_NEYNAR_API_KEY: process.env.TOM_FARCASTER_NEYNAR_API_KEY,
+    },
     avatar: 'https://github.com/Nounspace/justtom-eliza-starter/raw/tom/docs/static/img/you-are-a-partner-now.png',
   },
   system:

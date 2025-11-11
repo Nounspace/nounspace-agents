@@ -11,7 +11,7 @@ export const characterNoun584: Character = {
   plugins: [
     // Core plugins first
     '@elizaos/plugin-sql',
-    "@elizaos/plugin-farcaster",
+    // "@elizaos/plugin-farcaster",
 
     // Text-only plugins (no embedding support)
     ...(process.env.ANTHROPIC_API_KEY?.trim() ? ['@elizaos/plugin-anthropic'] : []),
@@ -40,7 +40,12 @@ export const characterNoun584: Character = {
     ...(!process.env.IGNORE_BOOTSTRAP ? ['@elizaos/plugin-bootstrap'] : []),
   ],
   settings: {
-    secrets: {},
+    FARCASTER_FID: 1091388,
+    secrets: {
+      OPENAI_API_KEY: process.env.NOUN584_OPENAI_API_KEY,
+      FARCASTER_SIGNER_UUID: process.env.NOUN584_FARCASTER_SIGNER_UUID,
+      FARCASTER_NEYNAR_API_KEY: process.env.NOUN584_FARCASTER_NEYNAR_API_KEY,
+    },
     avatar:
       'https://pbs.twimg.com/profile_images/1930810405317668865/j_1cjwlU_400x400.jpg',
   },

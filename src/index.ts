@@ -4,7 +4,8 @@ import { logger,
   type ProjectAgent 
 } from '@elizaos/core';
 
-import farcasterTomPlugin from '../plugin-tom-farcaster/dist/';
+// import farcasterTomPlugin from '../plugin-tom-farcaster/dist/';
+import farcasterPlugin from '../plugin-farcaster/dist/';
 // import starterPlugin from './plugin.ts';
 
 import { characterTom } from './characterTom.ts';
@@ -19,7 +20,7 @@ export const projectAgentTom: ProjectAgent = {
   character: characterTom,
   init: async (runtime: IAgentRuntime) => await initCharacter({ runtime }),
   plugins: [
-    farcasterTomPlugin
+    // farcasterTomPlugin
     // starterPlugin
   ], 
 };
@@ -28,11 +29,17 @@ export const projectAgentNoun584: ProjectAgent = {
   character: characterNoun584,
   init: async (runtime: IAgentRuntime) => await initCharacter({ runtime }),
   // plugins: [starterPlugin], <-- Import custom plugins here
+  plugins: [
+    farcasterPlugin
+  ],
 };
 
 
 const project: Project = {
-  agents: [projectAgentTom, projectAgentNoun584],
+  agents: [
+    // projectAgentTom, 
+    projectAgentNoun584
+  ],
 };
 
 // export { character } from './character.ts';
