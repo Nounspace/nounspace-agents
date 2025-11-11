@@ -1,0 +1,3 @@
+[submodule "plugin-tom-farcaster"]
+	path = plugin-tom-farcaster
+	url = https://github.com/elizaos-plugins/plugin-farcaster.git
