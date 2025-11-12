@@ -21,6 +21,7 @@ export const projectAgentTom: ProjectAgent = {
   character: characterTom,
   init: async (runtime: IAgentRuntime) => await initCharacter({ runtime }),
   plugins: [
+    farcasterPlugin
     // farcasterTomPlugin
     // starterPlugin
   ], 
@@ -38,7 +39,7 @@ export const projectAgentNoun584: ProjectAgent = {
 
 const project: Project = {
   agents: [
-    // projectAgentTom, 
+    projectAgentTom, 
     projectAgentNoun584
   ],
 };

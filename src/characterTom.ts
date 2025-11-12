@@ -42,6 +42,8 @@ export const characterTom: Character = {
   ],
   settings: {
     FARCASTER_FID: 527313,
+    SPAM_FILTER_ENABLED: true,
+    SPAM_FILTER_SHARED: true,
     secrets: {
       OPENAI_API_KEY: process.env.TOM_OPENAI_API_KEY,
       FARCASTER_SIGNER_UUID: process.env.TOM_FARCASTER_SIGNER_UUID,
