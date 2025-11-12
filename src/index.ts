@@ -6,6 +6,7 @@ import { logger,
 
 // import farcasterTomPlugin from '../plugin-tom-farcaster/dist/';
 import farcasterPlugin from '../plugin-farcaster/dist/';
+// import farcasterPluginHub from '../plugin-farcaster-hub/dist';
 // import starterPlugin from './plugin.ts';
 
 import { character } from './character.ts';
@@ -32,14 +33,15 @@ export const projectAgentNoun584: ProjectAgent = {
   init: async (runtime: IAgentRuntime) => await initCharacter({ runtime }),
   // plugins: [starterPlugin], <-- Import custom plugins here
   plugins: [
-    farcasterPlugin
+    // farcasterPlugin
+    farcasterPluginHub
   ],
 };
 
 
 const project: Project = {
   agents: [
-    projectAgentTom, 
+    // projectAgentTom, 
     projectAgentNoun584
   ],
 };
