@@ -34,7 +34,7 @@ async function build() {
           outdir: './dist',
           target: 'node',
           format: 'esm',
-          sourcemap: true,
+          sourcemap: 'inline',
           minify: false,
           external: [
             'dotenv',
