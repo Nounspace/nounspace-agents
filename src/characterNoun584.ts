@@ -41,6 +41,8 @@ export const characterNoun584: Character = {
   ],
   settings: {
     FARCASTER_FID: 1091388,
+    SPAM_FILTER_ENABLED: true,
+    SPAM_FILTER_SHARED: true,
     secrets: {
       OPENAI_API_KEY: process.env.NOUN584_OPENAI_API_KEY,
       FARCASTER_SIGNER_UUID: process.env.NOUN584_FARCASTER_SIGNER_UUID,

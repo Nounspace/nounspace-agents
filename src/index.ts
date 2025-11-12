@@ -8,6 +8,7 @@ import { logger,
 import farcasterPlugin from '../plugin-farcaster/dist/';
 // import starterPlugin from './plugin.ts';
 
+import { character } from './character.ts';
 import { characterTom } from './characterTom.ts';
 import { characterNoun584 } from './characterNoun584.ts';
 
@@ -42,7 +43,7 @@ const project: Project = {
   ],
 };
 
-// export { character } from './character.ts';
+export { character } from './character.ts';
 export { characterTom } from './characterTom.ts';
 export { characterNoun584 } from './characterNoun584.ts';
 
