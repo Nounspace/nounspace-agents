@@ -32,6 +32,7 @@
     "@elizaos/core": "1.6.4",
     "@elizaos/plugin-bootstrap": "1.6.4",
     "@elizaos/plugin-farcaster": "1.0.5",
+    "@elizaos/plugin-groq": "1.0.4",
     "@elizaos/plugin-ollama": "^1.2.4",
     "@elizaos/plugin-openai": "^1.5.18",
     "@elizaos/plugin-sql": "1.6.4",
@@ -58,7 +59,8 @@
   },
   "scripts": {
     "start": "elizaos start",
-    "dev": "elizaos dev",
+    "dev": "bun --inspect-wait=127.0.0.1:9229 elizaos dev",
+    "debug": "bun --inspect-wait=127.0.0.1:9229 dist/index.js",
     "build": "bun run build.ts",
     "lint": "prettier --write ./src",
     "type-check": "tsc --noEmit",

@@ -44,6 +44,13 @@ export const characterTom: Character = {
     FARCASTER_FID: 527313,
     SPAM_FILTER_ENABLED: true,
     SPAM_FILTER_SHARED: true,
+    CAST_IMMEDIATELY: false,
+
+    FARCASTER_TARGET_USERS: [
+      874542, //clanker
+    ],
+    FARCASTER_TARGET_CHANNELS: ["nounspace"],
+
     secrets: {
       OPENAI_API_KEY: process.env.TOM_OPENAI_API_KEY,
       FARCASTER_SIGNER_UUID: process.env.TOM_FARCASTER_SIGNER_UUID,
