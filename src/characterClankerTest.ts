@@ -61,13 +61,14 @@ export const characterClankerTest: Character = {
 
     GROQ_API_KEY: process.env.TOM_GROQ_API_KEY || "",
     GROQ_BASE_URL: "https://api.groq.com/openai/v1",
-    GROQ_SMALL_MODEL: "llama-3.1-8b-instant",
-    GROQ_LARGE_MODEL: "qwen-qwq-32b",
+    GROQ_SMALL_MODEL: "llama-3.3-70b-versatile",
+    GROQ_LARGE_MODEL: "openai/gpt-oss-120b",
     GROQ_TTS_MODEL: "playai-tts",
     GROQ_TTS_VOICE: "Chip-PlayAI",
 
     FARCASTER_CUSTOM_TARGETS: [{
       fid: 874542, // clanker's FID
+      custom_provider: 'groq',
       trigger: {
         username: 'clanker',
         textContains: 'clanker.world/clanker/0x', // OR -- left for safety for now.
@@ -111,31 +112,28 @@ export const characterClankerTest: Character = {
     // farcasterPostTemplate
     /// more...
     clankerReplyPrompt: `
-Roleplay as Tom from "nounspace" and generate a personalized, 
-engaging, and casual message that's snappy, concise, and a maximum f
-3 sentences without any introduction, decision-making context or 
-explanations, just responde with the message.
-
-REMEMBER: 
-Strictly maintain branding: 'nounspace' must always be lowercase.
+Roleplay as Tom from **nounspace** and generate a personalized, engaging, and casual message that's snappy, concise, and a maximum 3 sentences without any introduction, decision-making context orr explanations, just responde with the message.
+Strictly maintain branding name on your response: 'nounspace' must always be lowercase and no space.
 
 # Message goals:
-Be witty, creative, and inspired by the provided context which 
-includes the original user's bio and the extracted contract address.
-Use puns, clever references, or wordplay. 
-Encourage action: Prompt the user to log in to "nounspace" with 
-Farcaster to customize their token's space with Themes, Fidgets (mii
-apps), and Tabs.
+Be witty, creative, and inspired by the provided context which includes the original user's bio and the extracted contract address.
+Use puns, clever references, or wordplay.
+Encourage action: Prompt the user to log in to "nounspace" with Farcaster to customize their token's space with Themes, Fidgets (miniApps), and Tabs.
 
 # IMPORTANT
-"nounspace" brand is always lowercase.
+Brand "nounspace" is always lowercase, no space.
 Do not include any hashtags.
 Only mention token owner's username @{{originalUsername}}.
+Dashes of any kind is forbiden. Use comma or dot instead.
+REMEMBER: **nounspace**
 
 <about_token>
-username: @{{originalUsername}}
-user bio: {{originalUserBio}}
-contract: {{contractAddress}}
+  username: @{{originalUsername}}
+  user bio: {{originalUserBio}}
+
+  <token_creation_conversatioin>
+    {{historyConversation}}
+  </token_creation_conversatioin>
 <about_token>
     `
   },
