@@ -11,6 +11,7 @@ echo "🔨 Building all plugins..."
 for plugin in plugin-*; do
     if [ -d "$plugin/src" ]; then
         echo "🚀 Building $plugin..."
+        bun install
         bun build "$plugin/src/index.ts" --outdir "$plugin/dist"
     else
         echo "⚠️ Skipping $plugin (no src folder)"
