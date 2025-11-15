@@ -1,122 +1,283 @@
-# Project Starter
+# Nounspace Eliza Agents
 
-This is the starter template for ElizaOS projects.
+Custom ElizaOS agents and plugins developed and maintained by the Nounspace engineering team.  
+This repository contains the main agent project plus multiple external plugins included as **Git submodules**, enabling modular development and isolated plugin versioning.
 
-## Features
+---
 
-- Pre-configured project structure for ElizaOS development
-- Comprehensive testing setup with component and e2e tests
-- Default character configuration with plugin integration
-- Example service, action, and provider implementations
-- TypeScript configuration for optimal developer experience
-- Built-in documentation and examples
+# 🚀 What Is ElizaOS?
 
-## Getting Started
+ElizaOS is an open-source framework for building, running, and orchestrating modern AI agents.
+
+### Why we use it at Nounspace
+
+- Modular plugin architecture (we maintain our own Farcaster & Twitter plugins)
+- Multi-agent orchestration
+- Model-agnostic (OpenAI, Ollama, Grok, Llama…)
+- Built-in server + web interface
+- Easy local development + clean deployment pipeline
+
+More details can be found in the upstream project, but this README contains only what our team needs.
+
+---
+
+# 📦 Clone the Repo (With Submodules!)
+
+This repo includes external plugins as submodules. Always clone recursively:
 
 ```bash
-# Create a new project
-elizaos create --type project my-project
-# Dependencies are automatically installed and built
+git clone --recursive https://github.com/Nounspace/nounspace-eliza-agents.git
+````
 
-# Navigate to the project directory
-cd my-project
+If you already cloned without `--recursive`:
 
-# Start development immediately
-elizaos dev
+```bash
+git submodule update --init --recursive
 ```
 
-## Development
+---
+
+# 🏗 Build (Local or Render)
+
+Nounspace uses a unified build script for local dev and Render deploys:
+
+```
+scripts/render-build.sh
+```
+
+Run it locally:
 
 ```bash
-# Start development with hot-reloading (recommended)
-elizaos dev
+chmod +x scripts/render-build.sh
+./scripts/render-build.sh
+```
 
-# OR start without hot-reloading
+What the script does:
+
+1. Updates all git submodules
+2. Installs root dependencies
+3. Builds every plugin found under `plugin-*`
+4. Builds the main Eliza project
+
+---
+
+# 🔌 Working With Plugins (Important!)
+
+Custom plugins are stored in:
+
+```
+plugin-farcaster/
+plugin-twitter/
+plugin-<more>/
+```
+
+Each plugin has its own package + build pipeline using `tsup`.
+
+## Rebuilding a plugin (local development)
+
+Whenever you modify a plugin:
+
+```bash
+cd plugin-farcaster   # or plugin-twitter
+bun install
+bun run build         # builds dist/
+cd ..
+```
+
+Then start Eliza:
+
+```bash
 elizaos start
-# Note: When using 'start', you need to rebuild after changes:
-# bun run build
-
-# Test the project
-elizaos test
 ```
 
-## Testing
+➡️ **ElizaOS will automatically load your plugin from the freshly built `dist/` folder.**
 
-ElizaOS employs a dual testing strategy:
+This flow ensures fast iteration with zero monorepo rebuilds.
 
-1. **Component Tests** (`src/__tests__/*.test.ts`)
+---
 
-   - Run with Bun's native test runner
-   - Fast, isolated tests using mocks
-   - Perfect for TDD and component logic
+# ▶️ Running the Agent
 
-2. **E2E Tests** (`src/__tests__/e2e/*.e2e.ts`)
-   - Run with ElizaOS custom test runner
-   - Real runtime with actual database (PGLite)
-   - Test complete user scenarios
+After the build script finishes:
 
-### Test Structure
+### Production / Standard mode
 
-```
-src/
-  __tests__/              # All tests live inside src
-    *.test.ts            # Component tests (use Bun test runner)
-    e2e/                 # E2E tests (use ElizaOS test runner)
-      project-starter.e2e.ts  # E2E test suite
-      README.md          # E2E testing documentation
-  index.ts               # Export tests here: tests: [ProjectStarterTestSuite]
+```bash
+bun run start
+# or
+elizaos start
 ```
 
-### Running Tests
+This starts:
 
-- `elizaos test` - Run all tests (component + e2e)
-- `elizaos test component` - Run only component tests
-- `elizaos test e2e` - Run only E2E tests
+* backend server
+* agents
+* web UI (by default at [http://localhost:3000](http://localhost:3000))
 
-### Writing Tests
+### Development mode (with debugger attach)
 
-Component tests use bun:test:
-
-```typescript
-// Unit test example (__tests__/config.test.ts)
-describe('Configuration', () => {
-  it('should load configuration correctly', () => {
-    expect(config.debug).toBeDefined();
-  });
-});
-
-// Integration test example (__tests__/integration.test.ts)
-describe('Integration: Plugin with Character', () => {
-  it('should initialize character with plugins', async () => {
-    // Test interactions between components
-  });
-});
+```bash
+bun run dev
+# or
+elizaos dev
 ```
 
-E2E tests use ElizaOS test interface:
+This waits for a debugger on port **9229** before execution begins.
 
-```typescript
-// E2E test example (e2e/project.test.ts)
-export class ProjectTestSuite implements TestSuite {
-  name = 'project_test_suite';
-  tests = [
-    {
-      name: 'project_initialization',
-      fn: async (runtime) => {
-        // Test project in a real runtime
-      },
-    },
-  ];
-}
+---
 
-export default new ProjectTestSuite();
+# 🧪 Testing
+
+Before running any tests, dependencies specific to testing are auto-installed:
+
+```bash
+bun run test:install
 ```
 
-The test utilities in `__tests__/utils/` provide helper functions to simplify writing tests.
+### Run all tests
 
-## Configuration
+```bash
+bun run test
+```
 
-Customize your project by modifying:
+### Component tests
 
-- `src/index.ts` - Main entry point
-- `src/character.ts` - Character definition
+Small, isolated, unit-level tests:
+
+```bash
+bun run test:component
+```
+
+### E2E tests (Cypress)
+
+Full agent lifecycle tests via browser automation:
+
+```bash
+bun run test:e2e
+```
+
+Open Cypress UI:
+
+```bash
+bun run cy:open
+```
+
+### Coverage report
+
+```bash
+bun run test:coverage
+```
+
+### Watch mode (TDD)
+
+```bash
+bun run test:watch
+```
+
+---
+
+# 🧹 Code Quality
+
+Type check:
+
+```bash
+bun run type-check
+```
+
+Format:
+
+```bash
+bun run format
+```
+
+Verify formatting:
+
+```bash
+bun run format:check
+```
+
+Run everything before merging:
+
+```bash
+bun run check-all
+```
+
+---
+
+# 🧠 Quick Summary of ElizaOS Core (For Nounspace Developers)
+
+ElizaOS provides:
+
+### 🔌 Rich Connectivity
+
+Farcaster, Twitter (our custom), Discord, Telegram, and more.
+
+### 🧠 Model-Agnostic
+
+Supports OpenAI, Gemini, Grok, Llama, Ollama, etc.
+
+### 🖥 Modern Web UI
+
+Real-time agent dashboard for conversations, memory, groups, and threads.
+
+### 👥 Multi-Agent Architecture
+
+Specialized agents working together.
+
+### 📄 Document ingestion (RAG)
+
+Feed PDFs, notes, and indexed information into your agent.
+
+### 🛠 Plugin System
+
+We heavily rely on this — our Farcaster/Twitter plugins extend Eliza’s capabilities.
+
+### 📦 Seamless Developer Experience
+
+Local dev, debugging, tests, plugins — all integrated.
+
+---
+
+# 🧭 Architecture Overview
+
+The upstream ElizaOS architecture looks like:
+
+```
+/packages
+  server/        → Express backend for agents + API
+  client/        → Web UI (React)
+  cli/           → elizaos CLI
+  core/          → Shared core systems
+  plugin-*       → Official plugins
+```
+
+This project uses the official CLI + server packages but overrides plugins with our own.
+
+---
+
+# 🤝 Contributing (Internal)
+
+* Always clone with `--recursive`
+* Build individual plugins before starting Eliza
+* Commit changes to submodules properly
+  (`cd plugin-x && git push`)
+* PRs should include:
+
+  * passing tests
+  * coverage not decreasing
+  * type-safe code (type-check passing)
+  * formatted code
+
+---
+
+# 📜 License
+
+MIT (matching upstream ElizaOS)
+
+---
+
+# 🙏 Credits
+
+ElizaOS team for the base platform.
+Nounspace contributors for custom plugins and agent development.
+
