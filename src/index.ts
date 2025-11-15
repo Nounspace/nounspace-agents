@@ -23,7 +23,7 @@ export const projectAgentTom: ProjectAgent = {
   character: characterTom,
   init: async (runtime: IAgentRuntime) => await initCharacter({ runtime }),
   plugins: [
-    farcasterPlugin
+    // farcasterPlugin
     // starterPlugin
   ], 
 };
@@ -33,7 +33,7 @@ export const projectAgentNoun584: ProjectAgent = {
   init: async (runtime: IAgentRuntime) => await initCharacter({ runtime }),
   // plugins: [starterPlugin], <-- Import custom plugins here
   plugins: [
-    farcasterPlugin
+    // farcasterPlugin
   ],
 };
 
@@ -43,7 +43,7 @@ export const projectClankerTest: ProjectAgent = {
   init: async (runtime: IAgentRuntime) => await initCharacter({ runtime }),
   // plugins: [starterPlugin], <-- Import custom plugins here
   plugins: [
-    farcasterPlugin
+    // farcasterPlugin
     // TwitterPlugin
   ],
 };
@@ -51,9 +51,9 @@ export const projectClankerTest: ProjectAgent = {
 
 const project: Project = {
   agents: [
-    // projectAgentTom, 
+    projectAgentTom,
     // projectAgentNoun584,
-    projectClankerTest
+    // projectClankerTest
   ],
 };
 
