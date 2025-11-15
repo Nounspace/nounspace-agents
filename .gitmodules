@@ -7,3 +7,6 @@
 [submodule "plugin-twitter"]
 	path = plugin-twitter
 	url = https://github.com/elizaos-plugins/plugin-twitter.git
+[submodule ".cursor"]
+	path = .cursor
+	url = https://github.com/elizaOS/.cursor
