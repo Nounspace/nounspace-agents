@@ -1,9 +1,11 @@
 [submodule "plugin-farcaster"]
 	path = plugin-farcaster
 	url = https://github.com/nounspace/plugin-farcaster.git
+	branch = nounspace
 [submodule "plugin-twitter"]
 	path = plugin-twitter
 	url = https://github.com/nounspace/plugin-twitter.git
+	branch = nounspace
 [submodule ".cursor"]
 	path = .cursor
 	url = https://github.com/elizaOS/.cursor
