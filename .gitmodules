@@ -4,3 +4,6 @@
 [submodule "plugin-farcaster"]
 	path = plugin-farcaster
 	url = https://github.com/elizaos-plugins/plugin-farcaster.git
+[submodule "plugin-twitter"]
+	path = plugin-twitter
+	url = https://github.com/elizaos-plugins/plugin-twitter.git
