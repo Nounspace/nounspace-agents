@@ -675,6 +675,51 @@ Before deploying your agent to production:
 - [ ] Load testing completed
 - [ ] Monitoring and alerting configured
 
+## ♊️ Gemini Model Examples
+
+This section provides examples of how to configure and use Gemini models with your ElizaOS agent, including advanced usage patterns and benchmarking.
+
+### Gemini Benchmark Examples
+
+You can run benchmarks to evaluate the performance of different Gemini models.
+
+#### Usage
+
+To run the Gemini benchmark, use the following commands:
+
+```bash
+# Run the benchmark with default settings
+bun run benchmark:gemini
+
+# Run with a specific model
+bun run benchmark:gemini --model=gemini-1.5-flash
+
+# Run with a specific number of iterations
+bun run benchmark:gemini --iterations=100
+```
+
+### Configuration Examples
+
+While the following examples are in Python, they illustrate common configuration patterns that you can adapt to your TypeScript ElizaOS project.
+
+#### Using OpenRouter
+
+You can configure your agent to use Gemini models through OpenRouter. This allows you to easily switch between different models and manage API keys in one place.
+
+To do this, you would typically set the `open_router_api_key` and specify the Gemini model in your configuration, for example: `google/gemini-pro`.
+
+#### Direct Gemini Configuration
+
+For direct integration, you would configure the Gemini LLM with the desired model, such as `gemini-1.5-flash`.
+
+### Advanced Usage
+
+The following patterns from Python projects can be adapted for advanced use cases in ElizaOS:
+
+*   **Custom Model Class:** You can create a custom model class that encapsulates the logic for interacting with the Gemini API. This class can handle tasks like content generation, parallel requests, and error handling.
+*   **Schema Conversion:** If you are working with OpenAPI schemas, you can create utility functions to convert them to the Gemini schema format for use in function calling.
+*   **Mocking for Tests:** When writing tests, you can mock the Gemini API session to return predefined responses, allowing you to test your agent's logic without making actual API calls.
+
 ## 🎯 Next Steps
 
 ### 1. **Start Simple**
