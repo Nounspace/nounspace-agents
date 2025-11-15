@@ -58,6 +58,8 @@ export const characterClankerTest: Character = {
     TWITTER_API_SECRET_KEY: process.env.SMMBIA_TWITTER_API_SECRET_KEY!,
     TWITTER_ACCESS_TOKEN: process.env.SMMBIA_TWITTER_ACCESS_TOKEN!,
     TWITTER_ACCESS_TOKEN_SECRET: process.env.SMMBIA_TWITTER_ACCESS_TOKEN_SECRET!,
+    TWITTER_DISABLE_INITIAL_TIMELINE: true,
+    TWITTER_ENABLE_POST: false,
 
     GROQ_API_KEY: process.env.TOM_GROQ_API_KEY || "",
     GROQ_BASE_URL: "https://api.groq.com/openai/v1",
