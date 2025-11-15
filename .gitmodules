@@ -1,12 +1,9 @@
-[submodule "plugin-tom-farcaster"]
-	path = plugin-tom-farcaster
-	url = https://github.com/elizaos-plugins/plugin-farcaster.git
 [submodule "plugin-farcaster"]
 	path = plugin-farcaster
-	url = https://github.com/elizaos-plugins/plugin-farcaster.git
+	url = https://github.com/nounspace/plugin-farcaster.git
 [submodule "plugin-twitter"]
 	path = plugin-twitter
-	url = https://github.com/elizaos-plugins/plugin-twitter.git
+	url = https://github.com/nounspace/plugin-twitter.git
 [submodule ".cursor"]
 	path = .cursor
 	url = https://github.com/elizaOS/.cursor
